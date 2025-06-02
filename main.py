@@ -7,7 +7,7 @@ app = FastAPI()
 
 @app.get("/")
 async def read_root():
-    return {"message": "Welcome to the Soccer API"}
+    return {"message": "Welcome to the Soccer API!"}
 
 @app.get("/player_goals")
 async def player_goals(name: str, goals: int):
@@ -35,9 +35,9 @@ async def register_player(player: Player):
 async def stadium_info(stadium_name: str):
     return f"{stadium_name} is a world-class stadium!"
 
-@app.get("/matchday")
-async def matchday():
-    return {"matchday": 12}
+@app.get("/matchday/{match_num}")
+async def matchday(match_num: int):
+    return f"Matchday Number: {match_num} "
 
 @app.get("/standings")
 async def standings(league: str, top: int):
@@ -56,22 +56,3 @@ class MatchResult(BaseModel):
 @app.post("/submit_match")
 async def submit_match(result: MatchResult):
     return f"{result.home_team} {result.home_score} - {result.away_score} {result.away_team}"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
